@@ -35,7 +35,7 @@
 | 중간 | 휴식 | - | - |
 | [5](05주차/notion.md) | Classification | [Loan Prediction (Kaggle)](https://www.kaggle.com/datasets/altruistdelhite04/loan-prediction-problem-dataset) | [항공편 지연](https://dacon.io/competitions/official/236094) |
 | [6](06주차/notion.md) | Clustering | [Customer Personality Analysis (Kaggle)](https://www.kaggle.com/datasets/imakash3011/customer-personality-analysis) | [이커머스 고객 세분화](https://dacon.io/competitions/official/236222) |
-| [7](07주차/notion.md) | 사각지대·접근성 분석(그리디 최적화) | [서울시 불법주정차·전용차로 단속 CCTV 위치정보](https://data.seoul.go.kr/dataList/OA-20471/S/1/datasetView.do) · [S-DoT 유동인구](https://data.seoul.go.kr/dataList/OA-15964/S/1/datasetView.do) · [로컬 자료 안내](<dataset/extracted/서울시 CCTV 공공데이터/README.md>) | 심야약국 접근성 — 데이터 출처 확정 전 TODO |
+| [7](07주차/notion.md) | 사각지대·접근성 분석(그리디 최적화) | [서울시 불법주정차·전용차로 단속 CCTV 위치정보](https://data.seoul.go.kr/dataList/OA-20471/S/1/datasetView.do) · [S-DoT 유동인구](https://data.seoul.go.kr/dataList/OA-15964/S/1/datasetView.do) · [데이터 준비 안내](07주차/cctv_data_guide.md) | 심야약국 접근성 — 데이터 출처 확정 전 TODO |
 | [8](08주차/notion.md) | 최종 프로젝트 | [제주도교통량](https://dacon.io/competitions/official/235985), [신용카드세그먼트](https://dacon.io/competitions/official/236460) 또는 직접 수집한 공개 데이터 | 제공 트랙 A·B 또는 자유 트랙 C 중 택1 미니 프로젝트 |
 
 > **데이터 준비 안내:** 표의 링크는 각 데이터의 출처·다운로드 페이지로 연결됩니다. 서울 열린데이터광장에서는 실습에 필요한 월·기간의 파일을 선택할 수 있고, DACON과 Kaggle은 로그인이나 대회 규정 동의가 필요할 수 있습니다. KRX는 인증키 발급과 서비스 활용 승인을 마친 뒤 API로 수집합니다. 공식 페이지가 일시적으로 지연되거나 파일 목록을 보여 주지 않는다면 반복해서 새로고침하지 않아도 됩니다. 해당 주차의 저장된 결과나 연습용 예시 데이터로 기본 학습을 이어가고, 확인한 페이지 상태를 오류 기록에 남깁니다. 같은 링크를 해당 주차의 `notion.md`와 노트북에도 배치해 학습 중 바로 찾을 수 있도록 했습니다. CCTV 관련 파일은 로컬 자료 안내에서 용도와 경로를 확인할 수 있습니다. 심야약국 데이터는 출처 링크가 확정되면 주차 문서의 `TODO`를 갱신합니다.
@@ -53,7 +53,7 @@ python 00_OT/check_environment.py
 환경 확인 도구는 파일이나 인증키를 변경하지 않습니다. 설치되지 않은 패키지와 없는 공통 폴더만 알려 주며, 실제 데이터 파일은 각 주차의 준비 안내에서 따로 확인합니다. 오류가 발생했을 때의 공통 확인 순서는 [OT의 복구 사다리](00_OT/notion.md#복구-사다리)에서 찾을 수 있습니다.
 
 ```text
-Dacon-dataset/
+PSPY-DataAnalysis/
 ├─ 00_OT/
 │  ├─ check_environment.py      # 파이썬·패키지·공통 폴더 읽기 전용 점검
 │  └─ setup_folders.py          # 비어 있는 공통 폴더 생성
@@ -63,15 +63,20 @@ Dacon-dataset/
 │  ├─ assignment_baseline.ipynb
 │  └─ assets/
 ├─ dataset/
-│  ├─ raw/                    # 내려받은 파일과 API 원본
-│  ├─ extracted/              # 노트북이 읽는 압축 해제 자료
-│  └─ processed/              # 정제·병합해 새로 만든 산출물
+│  ├─ open/                   # 공개·접근 가능한 데이터
+│  │  ├─ raw/                 # 내려받은 파일과 API 원본
+│  │  ├─ extracted/           # 노트북이 읽는 압축 해제 자료
+│  │  └─ processed/           # 정제·병합해 새로 만든 산출물
+│  └─ close/                  # 비공개·접근 제한 데이터
+│     ├─ raw/
+│     ├─ extracted/
+│     └─ processed/
 ├─ .env.example
 ├─ requirements.txt            # 공통 필수 패키지
 └─ README.md
 ```
 
-각 주차의 `notion.md`는 개념과 해석 기준, `example.ipynb`는 따라 실행하는 예제, `assignment_baseline.ipynb`는 과제 시작점입니다. `assets/`에는 교재에서 바로 보여 주는 그림이 들어갑니다. 1주차에는 승인된 키로 KRX 원본을 직접 수집하는 `krx_api.py`가 추가로 들어갑니다. 인증키는 루트 `.env`의 `KRX_API_KEY`에서 읽고, 원본 JSON과 CSV는 Git에서 제외된 로컬 `dataset/`에 저장합니다.
+각 주차의 `notion.md`는 개념과 해석 기준, `example.ipynb`는 따라 실행하는 예제, `assignment_baseline.ipynb`는 과제 시작점입니다. `assets/`에는 교재에서 바로 보여 주는 그림이 들어갑니다. 1주차에는 승인된 키로 KRX 원본을 직접 수집하는 `krx_api.py`가 추가로 들어갑니다. 인증키는 루트 `.env`의 `KRX_API_KEY`에서 읽고, 원본 JSON과 CSV는 Git에서 제외된 로컬 `dataset/`에 저장합니다. 공개 데이터는 `dataset/open/`, 비공개 또는 접근 제한 데이터는 `dataset/close/`에 구분하며 두 영역 모두 원격 저장소에는 올리지 않습니다.
 
 베이스라인 노트북은 정답지가 아니라 **첫 시도를 시작하는 발판**입니다. 주차에 따라 데이터 로딩이나 기계적인 전처리가 일부 제공되며, 남은 부분을 모두 채우지 않아도 됩니다. 질문 하나를 정해 코드를 한 번 바꾸어 보고, 결과 또는 오류와 다음 시도를 기록하는 것이 기본 범위입니다.
 

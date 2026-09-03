@@ -33,9 +33,9 @@
 from pathlib import Path
 import pandas as pd
 
-bike_dir = Path('../dataset/extracted/따릉이 공공데이터/02_이용정보')
+bike_dir = Path('../dataset/open/extracted/따릉이 공공데이터/02_이용정보')
 bike_files = sorted(bike_dir.glob('서울특별시 공공자전거 일별 대여건수_*.csv'))
-logistics_train = Path('../dataset/extracted/물류 유통량 예측 경진대회/train.csv')
+logistics_train = Path('../dataset/open/extracted/물류 유통량 예측 경진대회/train.csv')
 bike_required = {'대여일자', '대여건수'}
 logistics_required = {
     '송하인_격자공간고유번호', '수하인_격자공간고유번호',
@@ -462,7 +462,7 @@ Random Forest는 이 구간에서 단일 트리보다 낮은 RMSE를 보였지�
 ```python
 from pathlib import Path
 
-data_dir = Path('../dataset/extracted/물류 유통량 예측 경진대회')
+data_dir = Path('../dataset/open/extracted/물류 유통량 예측 경진대회')
 train_path = data_dir / 'train.csv'
 test_path = data_dir / 'test.csv'
 print('현재 작업 폴더:', Path.cwd())

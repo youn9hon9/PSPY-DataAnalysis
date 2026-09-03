@@ -30,8 +30,8 @@
 from pathlib import Path
 import pandas as pd
 
-loan_path = Path('../dataset/extracted/Loan Prediction Problem Dataset/train_u6lujuX_CVtuZ9i.csv')
-flight_path = Path('../dataset/extracted/월간 데이콘 항공편 지연 예측 AI 경진대회/train.csv')
+loan_path = Path('../dataset/open/extracted/Loan Prediction Problem Dataset/train_u6lujuX_CVtuZ9i.csv')
+flight_path = Path('../dataset/open/extracted/월간 데이콘 항공편 지연 예측 AI 경진대회/train.csv')
 loan_required = {
     'Loan_Status', 'Gender', 'Married', 'Dependents', 'Education',
     'Self_Employed', 'Property_Area', 'ApplicantIncome',
@@ -256,7 +256,7 @@ pred_050 = (proba_y >= 0.50).astype(int)
 
 ```python
 df = pd.read_csv(
-    "../dataset/extracted/Loan Prediction Problem Dataset/"
+    "../dataset/open/extracted/Loan Prediction Problem Dataset/"
     "train_u6lujuX_CVtuZ9i.csv"
 )
 
@@ -521,7 +521,7 @@ for threshold in [0.3, 0.5, 0.7]:
 ```python
 from pathlib import Path
 
-train_path = Path('../dataset/extracted/월간 데이콘 항공편 지연 예측 AI 경진대회/train.csv')
+train_path = Path('../dataset/open/extracted/월간 데이콘 항공편 지연 예측 AI 경진대회/train.csv')
 print('현재 작업 폴더:', Path.cwd())
 print('train.csv 존재:', train_path.exists())
 ```

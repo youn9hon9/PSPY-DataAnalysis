@@ -1,11 +1,5 @@
-# 원본·가공 데이터는 저장소에 포함하지 않습니다.
-# 다만 CCTV 폴더의 구조와 출처를 설명하는 안내서는 공유합니다.
-dataset/*
-!dataset/extracted/
-dataset/extracted/*
-!dataset/extracted/서울시 CCTV 공공데이터/
-dataset/extracted/서울시 CCTV 공공데이터/*
-!dataset/extracted/서울시 CCTV 공공데이터/README.md
+# 공개·비공개 여부와 관계없이 모든 로컬 데이터와 분석 산출물은 저장소에 포함하지 않습니다.
+/dataset/
 .env
 .env.*
 !.env.example

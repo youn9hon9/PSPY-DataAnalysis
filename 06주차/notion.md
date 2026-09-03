@@ -31,8 +31,8 @@
 from pathlib import Path
 import pandas as pd
 
-marketing_path = Path('../dataset/extracted/Customer Personality Analysis/marketing_campaign.csv')
-sales_path = Path('../dataset/extracted/이커머스 고객 세분화 분석 아이디어 경진대회/Onlinesales_info.csv')
+marketing_path = Path('../dataset/open/extracted/Customer Personality Analysis/marketing_campaign.csv')
+sales_path = Path('../dataset/open/extracted/이커머스 고객 세분화 분석 아이디어 경진대회/Onlinesales_info.csv')
 marketing_required = {
     'Income', 'Dt_Customer', 'Year_Birth', 'Recency', 'Kidhome', 'Teenhome',
     'MntWines', 'MntFruits', 'MntMeatProducts', 'MntFishProducts',
@@ -289,7 +289,7 @@ K-means가 만든 군집은 데이터 안에 원래 존재하던 절대적 정�
 
 ```python
 df = pd.read_csv(
-    "../dataset/extracted/Customer Personality Analysis/"
+    "../dataset/open/extracted/Customer Personality Analysis/"
     "marketing_campaign.csv",
     sep="\t",
 )
@@ -568,7 +568,7 @@ K와 군집 이름을 같은 데이터에서 여러 번 바꾸어 골랐다면 �
 ```python
 from pathlib import Path
 
-data_dir = Path('../dataset/extracted/이커머스 고객 세분화 분석 아이디어 경진대회')
+data_dir = Path('../dataset/open/extracted/이커머스 고객 세분화 분석 아이디어 경진대회')
 files = {
     '기본 거래내역': data_dir / 'Onlinesales_info.csv',
     '선택 고객정보': data_dir / 'Customer_info.csv',

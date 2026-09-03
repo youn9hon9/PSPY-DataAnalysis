@@ -42,7 +42,7 @@ cells = [
 
         - [서울시 불법주정차·전용차로 단속 CCTV 위치정보](https://data.seoul.go.kr/dataList/OA-20471/S/1/datasetView.do)
         - [스마트서울 도시데이터 센서(S-DoT) 유동인구 측정 정보](https://data.seoul.go.kr/dataList/OA-15964/S/1/datasetView.do)
-        - [로컬 데이터 폴더 안내](<../dataset/extracted/서울시 CCTV 공공데이터/README.md>)
+        - [데이터 준비 안내](cctv_data_guide.md)
         - [교재 설명과 결과 해석](notion.md)
 
         > **분석 범위:** 전용차로 단속 CCTV는 범죄예방 CCTV가 아닙니다. S-DoT 지점도 실제 CCTV 설치 가능 후보지가 아닙니다. 이 결과는 공개 좌표로 공간 커버리지와 그리디 MCLP 절차를 익히는 교육용 시나리오이며, 안전 효과나 실제 설치 우선순위를 뜻하지 않습니다.
@@ -77,9 +77,9 @@ cells = [
 
 
         PROJECT_ROOT = find_project_root(Path.cwd().resolve())
-        DATA_ROOT = PROJECT_ROOT / "dataset" / "extracted" / "서울시 CCTV 공공데이터"
+        DATA_ROOT = PROJECT_ROOT / "dataset" / "open" / "extracted" / "서울시 CCTV 공공데이터"
         ASSET_DIR = PROJECT_ROOT / "07주차" / "assets"
-        OUTPUT_DIR = PROJECT_ROOT / "dataset" / "processed" / "서울시 CCTV 공공데이터"
+        OUTPUT_DIR = PROJECT_ROOT / "dataset" / "open" / "processed" / "서울시 CCTV 공공데이터"
         OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
         PARKING_PATH = DATA_ROOT / "02_교통_단속_CCTV" / "02_불법주정차" / "서울시 불법주정차 단속 CCTV 위치정보.csv"
@@ -686,7 +686,7 @@ cells = [
         '''
         ## Part 7 — 결과 파일을 저장하고 선택적으로 대화형 지도를 만듭니다
 
-        정제한 수요 지점, 추천 후보, 민감도 표를 `dataset/processed/서울시 CCTV 공공데이터/`에 저장합니다. 원본과 분석 산출물을 분리하면 같은 분석을 다시 실행하기 쉽습니다.
+        정제한 수요 지점, 추천 후보, 민감도 표를 `dataset/open/processed/서울시 CCTV 공공데이터/`에 저장합니다. 원본과 분석 산출물을 분리하면 같은 분석을 다시 실행하기 쉽습니다.
         '''
     ),
     code(

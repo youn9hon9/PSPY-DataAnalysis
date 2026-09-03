@@ -42,7 +42,7 @@ for name, path in paths_to_check:
         print(name, "존재:", path.is_file(), "크기(bytes):", size, "경로:", path.resolve())
 ```
 
-- 트랙 A는 `../dataset/extracted/제주도 도로 교통량 예측 AI 경진대회/open/train.csv` 하나를 사용합니다. `LOAD_DATA=True`이면 약 470만 행 원본을 먼저 읽으므로, 기본 기록에서는 경로만 확인해도 됩니다.
+- 트랙 A는 `../dataset/open/extracted/제주도 도로 교통량 예측 AI 경진대회/open/train.csv` 하나를 사용합니다. `LOAD_DATA=True`이면 약 470만 행 원본을 먼저 읽으므로, 기본 기록에서는 경로만 확인해도 됩니다.
 - 트랙 B는 2018년 7월의 회원정보·신용정보 Parquet 두 파일이 모두 필요합니다. Parquet는 표를 저장하는 파일 형식이고, `pyarrow`는 pandas가 이 형식을 읽을 때 사용하는 패키지입니다. 파일은 있는데 `pyarrow` 오류가 나면 오류를 기록한 뒤 터미널에서 `python -m pip install pyarrow`를 실행합니다.
 - 트랙 C는 `CUSTOM_PATH`에 CSV·Parquet·Excel 경로를 적습니다. 경로가 비어 있거나 파일 크기가 0바이트라면 데이터 로딩을 반복하지 않고 그 상태를 관찰로 남깁니다.
 - 파일이 없거나 로딩에 실패해도 기본 시도 셀은 경로 점검표를 결과로 사용합니다. 질문, 실행 또는 실행 시도, 관찰한 결과 또는 오류, 다음 행동의 네 줄을 남기면 이번 주 기본 기록을 마친 것입니다.

@@ -75,8 +75,12 @@ def main():
     expected_directories = (
         PROJECT_ROOT / "00_OT",
         *(PROJECT_ROOT / f"{week:02d}주차" for week in range(1, 9)),
-        PROJECT_ROOT / "dataset" / "extracted",
-        PROJECT_ROOT / "dataset" / "processed",
+        PROJECT_ROOT / "dataset" / "open" / "raw",
+        PROJECT_ROOT / "dataset" / "open" / "extracted",
+        PROJECT_ROOT / "dataset" / "open" / "processed",
+        PROJECT_ROOT / "dataset" / "close" / "raw",
+        PROJECT_ROOT / "dataset" / "close" / "extracted",
+        PROJECT_ROOT / "dataset" / "close" / "processed",
     )
     missing_directories = [path for path in expected_directories if not path.is_dir()]
     if missing_directories:
@@ -85,7 +89,7 @@ def main():
         print("다음 명령으로 비어 있는 공통 폴더만 만들 수 있습니다:")
         print("  python 00_OT/setup_folders.py")
     else:
-        print("[정상] 00_OT, 01~08주차, dataset/extracted, dataset/processed가 있습니다.")
+        print("[정상] 주차 폴더와 dataset/open, dataset/close의 raw·extracted·processed 폴더가 있습니다.")
 
     print("\n[다음 행동]")
     if missing_required:

@@ -48,7 +48,7 @@ else:
 
 ## `notion.md`와 `example.ipynb`를 함께 읽는 방법
 
-CCTV 관련 원본 자료는 `dataset/extracted/서울시 CCTV 공공데이터`에 용도별로 정리되어 있습니다. `example.ipynb`에는 실제 전용차로 단속 CCTV와 S-DoT 데이터를 불러와 좌표 품질 점검, 하버사인 거리, 현재 커버리지, 그리디 후보 추천, 민감도 분석, 시각화까지 실행한 Part 0~7이 들어 있습니다. 이 문서의 코드·표·그림을 읽은 뒤 같은 이름의 노트북 셀을 실행하면서 결과를 비교합니다. 아래 네 순서는 확장까지 포함한 전체 경로입니다. 기본 학습에서는 순서 1~2의 역할표와 `575.3m` 설명만 읽고, `example.ipynb`를 실행하지 않은 채 `assignment_baseline.ipynb`의 ✅ 기본 시도로 이동해도 됩니다.
+CCTV 관련 원본 자료는 `dataset/open/extracted/서울시 CCTV 공공데이터`에 용도별로 정리되어 있습니다. `example.ipynb`에는 실제 전용차로 단속 CCTV와 S-DoT 데이터를 불러와 좌표 품질 점검, 하버사인 거리, 현재 커버리지, 그리디 후보 추천, 민감도 분석, 시각화까지 실행한 Part 0~7이 들어 있습니다. 이 문서의 코드·표·그림을 읽은 뒤 같은 이름의 노트북 셀을 실행하면서 결과를 비교합니다. 아래 네 순서는 확장까지 포함한 전체 경로입니다. 기본 학습에서는 순서 1~2의 역할표와 `575.3m` 설명만 읽고, `example.ipynb`를 실행하지 않은 채 `assignment_baseline.ipynb`의 ✅ 기본 시도로 이동해도 됩니다.
 
 ### 데이터 다운로드 안내
 
@@ -56,14 +56,14 @@ CCTV 관련 원본 자료는 `dataset/extracted/서울시 CCTV 공공데이터`�
 
 - **공식 다운로드 페이지:** [서울시 불법주정차·전용차로 단속 CCTV 위치정보](https://data.seoul.go.kr/dataList/OA-20471/S/1/datasetView.do)
 - **S-DoT 공식 다운로드 페이지:** [스마트서울 도시데이터 센서(S-DoT) 유동인구 측정 정보](https://data.seoul.go.kr/dataList/OA-15964/S/1/datasetView.do)
-- **정리된 로컬 자료:** [서울시 CCTV 공공데이터 폴더 안내](<../dataset/extracted/서울시 CCTV 공공데이터/README.md>)
+- **정리된 로컬 자료:** [서울시 CCTV 공공데이터 준비 안내](cctv_data_guide.md)
 - **기존 시설:** `02_교통_단속_CCTV/03_전용차로/서울시 전용차로 위반 단속 CCTV 위치정보.csv`
 - **품질·밀도 비교 자료:** `02_교통_단속_CCTV/02_불법주정차/서울시 불법주정차 단속 CCTV 위치정보.csv`
 - **수요·후보 좌표:** `03_S-DoT_유동인구/01_설치위치/서울시 도시데이터 센서(S-DoT) 유동인구 설치 위치정보_251113.xlsx`
 - **수요 가중치:** `03_S-DoT_유동인구/02_측정데이터/2026/`의 주간 CSV 3개
 - **심야약국 데이터:** TODO — 원본 배포기관과 다운로드 링크를 확정한 뒤 추가합니다.
 
-> 공식 페이지의 파일 목록이 비어 있거나 늦게 표시될 수 있고, 이후 제공 방식이 바뀔 수도 있습니다. 이때는 반복해서 새로고침하지 말고 [로컬 자료 폴더 안내](<../dataset/extracted/서울시 CCTV 공공데이터/README.md>)에서 현재 제공 파일과 출처 메모를 확인한 뒤, “공식 페이지에서 파일 목록을 확인하지 못했습니다”라는 상태를 기록합니다.
+> 공식 페이지의 파일 목록이 비어 있거나 늦게 표시될 수 있고, 이후 제공 방식이 바뀔 수도 있습니다. 이때는 반복해서 새로고침하지 말고 [데이터 준비 안내](cctv_data_guide.md)에서 현재 제공 파일과 출처 메모를 확인한 뒤, “공식 페이지에서 파일 목록을 확인하지 못했습니다”라는 상태를 기록합니다.
 
 로컬 폴더에는 방범·수사용, 불법주정차 단속용, 전용차로 단속용 등 설치 목적이 다른 자료가 함께 있습니다. 분석 질문과 맞지 않는 CCTV를 하나의 시설로 합치지 말고, 먼저 폴더 안내에서 기준일·행의 의미·좌표 컬럼을 확인합니다. 내려받은 날짜와 좌표계도 함께 기록하면 같은 분석을 다시 확인하기 쉽습니다.
 
@@ -390,9 +390,9 @@ covered |= candidate_cover[:, best]
 
 | 산출물 | 위치 | 역할 |
 |---|---|---|
-| 수요별 설치 전후 거리·커버 여부 | `dataset/processed/서울시 CCTV 공공데이터/week7_sdot_demand_coverage.csv` | 수요 지점별 결과 검산 |
-| 단계별 추천 후보 | `dataset/processed/서울시 CCTV 공공데이터/week7_greedy_recommendations.csv` | 추천 순서와 추가 커버 근거 확인 |
-| 민감도 표 | `dataset/processed/서울시 CCTV 공공데이터/week7_sensitivity.csv` | 반경·설치 수 비교 |
+| 수요별 설치 전후 거리·커버 여부 | `dataset/open/processed/서울시 CCTV 공공데이터/week7_sdot_demand_coverage.csv` | 수요 지점별 결과 검산 |
+| 단계별 추천 후보 | `dataset/open/processed/서울시 CCTV 공공데이터/week7_greedy_recommendations.csv` | 추천 순서와 추가 커버 근거 확인 |
+| 민감도 표 | `dataset/open/processed/서울시 CCTV 공공데이터/week7_sensitivity.csv` | 반경·설치 수 비교 |
 | 센서 관측 완전성 그림 | `07주차/assets/sdot-observation-completeness.png` | 80% 품질 기준과 포함 센서 확인 |
 | 민감도 그림 | `07주차/assets/cctv-sensitivity.png` | 반경·후보 수에 따른 커버율 비교 |
 | 정적 결과 그림 | `07주차/assets/cctv-coverage-before-after.png` | 설치 전후 공간 분포 비교 |
@@ -532,11 +532,11 @@ covered |= candidate_cover[:, best]
 
 CCTV 분석은 `example.ipynb`에 구현되어 있습니다. 다음 항목은 기본 완료 이후, 저장된 출력만 읽지 않고 자신의 환경에서 같은 결과를 재현하고 싶을 때 사용하는 선택 체크리스트입니다. 모두 수행할 필요는 없습니다. 심야약국 과제 자료만 출처가 확정될 때까지 TODO로 남겨 둡니다.
 
-- [ ] [로컬 폴더 안내](<../dataset/extracted/서울시 CCTV 공공데이터/README.md>)에서 노트북이 사용하는 입력 파일 6개를 확인합니다.
+- [ ] [데이터 준비 안내](cctv_data_guide.md)에서 노트북이 사용하는 입력 파일 6개를 확인합니다.
 - [ ] `example.ipynb`의 Part 0~2를 실행하고 분석 행 56개, 수요 지점 62개, 후보지 126개가 나오는지 확인합니다.
 - [ ] Part 3~5를 실행하고 초기 가중 커버율 18.8%, 후보 5곳 추가 후 59.1%와 비교합니다.
 - [ ] Part 6에서 반경·설치 수·가중치를 바꾸고 추천 순서가 달라지는 이유를 한 문장으로 적습니다.
-- [ ] 생성된 PNG와 `dataset/processed/서울시 CCTV 공공데이터/`의 CSV 3개를 확인합니다.
+- [ ] 생성된 PNG와 `dataset/open/processed/서울시 CCTV 공공데이터/`의 CSV 3개를 확인합니다.
 - [ ] 추천 좌표가 실제 설치안이 아닌 계산 후보라는 점과 데이터의 한계를 결과에 함께 기록합니다.
-- [ ] 심야약국 및 수요 데이터의 공식 출처를 확정하고 `dataset/extracted`에 배치합니다. — TODO
+- [ ] 심야약국 및 수요 데이터의 공식 출처를 확정하고 `dataset/open/extracted`에 배치합니다. — TODO
 - [ ] 출처가 확정되면 `assignment_baseline.ipynb`에 데이터 로딩과 좌표 정제 셀을 추가합니다. — TODO

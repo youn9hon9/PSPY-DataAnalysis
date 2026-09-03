@@ -225,9 +225,9 @@ def snapshot_paths(dataset: str, bas_dd: str, root: Path | None = None) -> dict[
     root = (root or project_root()).resolve()
     stem = f"{ENDPOINTS[dataset].file_stem}_{bas_dd}"
     return {
-        "raw": root / "dataset" / "raw" / "KRX" / f"{stem}.json",
-        "csv": root / "dataset" / "extracted" / "KRX" / f"{stem}.csv",
-        "metadata": root / "dataset" / "extracted" / "KRX" / f"{stem}.metadata.json",
+        "raw": root / "dataset" / "open" / "raw" / "KRX" / f"{stem}.json",
+        "csv": root / "dataset" / "open" / "extracted" / "KRX" / f"{stem}.csv",
+        "metadata": root / "dataset" / "open" / "extracted" / "KRX" / f"{stem}.metadata.json",
     }
 
 

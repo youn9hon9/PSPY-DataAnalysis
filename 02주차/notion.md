@@ -56,9 +56,9 @@ print('현재 작업 폴더:', start)
 print('프로젝트 루트:', root)
 
 if root is not None:
-    bike_dir = root / 'dataset/extracted/따릉이 공공데이터/02_이용정보'
+    bike_dir = root / 'dataset/open/extracted/따릉이 공공데이터/02_이용정보'
     bike_files = sorted(bike_dir.glob('서울특별시 공공자전거 일별 대여건수_*.csv'))
-    citrus_path = root / 'dataset/extracted/감귤 착과량 예측 AI 경진대회/train.csv'
+    citrus_path = root / 'dataset/open/extracted/감귤 착과량 예측 AI 경진대회/train.csv'
     print('따릉이 파일 수:', len(bike_files))
     print('감귤 train.csv:', citrus_path.is_file())
     if bike_files:
@@ -194,8 +194,8 @@ print('7시간 공부 예측 점수:', new_pred[0])
 
 ### 데이터 준비 및 다운로드
 
-- 본문 실습은 README의 [서울시 따릉이 일별 대여건수](https://data.seoul.go.kr/dataList/OA-14994/A/1/datasetView.do)를 사용합니다. 파일 목록에서 필요한 기간의 `서울특별시 공공자전거 일별 대여건수_*.csv`를 내려받아 `dataset/extracted/따릉이 공공데이터/02_이용정보/`에 두면 됩니다. 준비한 파일의 출처·다운로드 날짜·파일 버전도 함께 기록합니다.
-- 과제 데이터는 README의 [감귤 착과량](https://dacon.io/competitions/official/236038) 링크에서 직접 확인하고 내려받을 수 있습니다. 기본 시도에는 `train.csv`만 필요하며, 선택 탐색에서 최종 예측을 만들 때 `test.csv`와 `sample_submission.csv`를 사용합니다. 내려받은 파일을 `dataset/extracted/감귤 착과량 예측 AI 경진대회/`에 두면 `assignment_baseline.ipynb`의 경로와 연결됩니다.
+- 본문 실습은 README의 [서울시 따릉이 일별 대여건수](https://data.seoul.go.kr/dataList/OA-14994/A/1/datasetView.do)를 사용합니다. 파일 목록에서 필요한 기간의 `서울특별시 공공자전거 일별 대여건수_*.csv`를 내려받아 `dataset/open/extracted/따릉이 공공데이터/02_이용정보/`에 두면 됩니다. 준비한 파일의 출처·다운로드 날짜·파일 버전도 함께 기록합니다.
+- 과제 데이터는 README의 [감귤 착과량](https://dacon.io/competitions/official/236038) 링크에서 직접 확인하고 내려받을 수 있습니다. 기본 시도에는 `train.csv`만 필요하며, 선택 탐색에서 최종 예측을 만들 때 `test.csv`와 `sample_submission.csv`를 사용합니다. 내려받은 파일을 `dataset/open/extracted/감귤 착과량 예측 AI 경진대회/`에 두면 `assignment_baseline.ipynb`의 경로와 연결됩니다.
 
 ## 순서대로 따라가기
 

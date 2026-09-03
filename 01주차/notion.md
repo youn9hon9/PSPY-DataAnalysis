@@ -61,7 +61,7 @@ print('현재 작업 폴더:', start)
 print('프로젝트 루트:', root)
 
 if root is not None:
-    bike_path = root / 'dataset/extracted/따릉이 공공데이터/03_대여이력/서울특별시 공공자전거 대여이력 정보_2602.csv'
+    bike_path = root / 'dataset/open/extracted/따릉이 공공데이터/03_대여이력/서울특별시 공공자전거 대여이력 정보_2602.csv'
     print('따릉이 파일:', bike_path, bike_path.is_file())
     if bike_path.is_file():
         print('열 이름:', pd.read_csv(bike_path, encoding='cp949', nrows=0).columns.tolist())
@@ -245,7 +245,7 @@ IQR 경계 밖 후보: [90]
 
 ### 데이터 준비와 접근 경로
 
-[서울 열린데이터광장의 따릉이 대여이력 페이지](https://data.seoul.go.kr/dataList/OA-15182/A/1/datasetView.do)에서 월별·연도별 원본 파일을 내려받을 수 있습니다. 이 장과 `example.ipynb`는 파일 목록의 `서울특별시 공공자전거 대여이력 정보_2602.csv`를 사용합니다. 파일을 `dataset/extracted/따릉이 공공데이터/03_대여이력/`에 두고, 출처 URL·다운로드 날짜·파일 버전을 함께 기록하면 나중에 같은 분석을 재현하기가 쉽습니다.
+[서울 열린데이터광장의 따릉이 대여이력 페이지](https://data.seoul.go.kr/dataList/OA-15182/A/1/datasetView.do)에서 월별·연도별 원본 파일을 내려받을 수 있습니다. 이 장과 `example.ipynb`는 파일 목록의 `서울특별시 공공자전거 대여이력 정보_2602.csv`를 사용합니다. 파일을 `dataset/open/extracted/따릉이 공공데이터/03_대여이력/`에 두고, 출처 URL·다운로드 날짜·파일 버전을 함께 기록하면 나중에 같은 분석을 재현하기가 쉽습니다.
 
 주식 데이터는 파일을 배포받는 대신, 아래의 **KRX 정보데이터시스템 API 실습**에서 공식 API를 호출해 직접 수집합니다. 인증키 발급, 서비스 활용 신청, 수집 명령은 해당 절에 순서대로 안내되어 있습니다.
 
@@ -269,7 +269,7 @@ IQR 경계 밖 후보: [90]
 ```python
 cols = ['대여일시', '이용시간(분)', '이용거리(M)', '생년', '성별', '이용자종류']
 df = pd.read_csv(
-    '../dataset/extracted/따릉이 공공데이터/03_대여이력/서울특별시 공공자전거 대여이력 정보_2602.csv',
+    '../dataset/open/extracted/따릉이 공공데이터/03_대여이력/서울특별시 공공자전거 대여이력 정보_2602.csv',
     encoding='cp949',
     usecols=cols,
 )
@@ -559,8 +559,8 @@ python "01주차/krx_api.py" --date 20240823
 ```
 
 ```text
-[API 수집] KRX 시리즈 일별시세정보: 38행 → dataset/extracted/KRX/krx_index_20240823.csv
-[API 수집] 코스닥 일별매매정보: 1,752행 → dataset/extracted/KRX/kosdaq_stocks_20240823.csv
+[API 수집] KRX 시리즈 일별시세정보: 38행 → dataset/open/extracted/KRX/krx_index_20240823.csv
+[API 수집] 코스닥 일별매매정보: 1,752행 → dataset/open/extracted/KRX/kosdaq_stocks_20240823.csv
 ```
 
 수집기는 아래처럼 원본과 분석용 파일을 분리합니다. 실제 데이터는 KRX 이용 조건을 고려해 저장소에 배포하지 않고 각 학습자의 로컬에만 둡니다.

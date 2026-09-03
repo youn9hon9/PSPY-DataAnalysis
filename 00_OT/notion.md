@@ -92,10 +92,10 @@ OT의 모든 내용을 첫날에 읽을 필요는 없습니다. 아래 네 단�
 
 ## 학습 폴더를 먼저 맞춥니다
 
-학습 노트북은 모두 같은 상대경로를 사용합니다. 따라서 데이터 파일을 내려받기 전에 폴더 이름과 위치를 먼저 맞추면, 각자 다른 컴퓨터에서도 같은 코드를 그대로 실행하기 쉽습니다. 프로젝트 루트는 `README.md`와 `00_OT`, `01주차` 폴더가 함께 보이는 `Dacon-dataset` 폴더입니다.
+학습 노트북은 모두 같은 상대경로를 사용합니다. 따라서 데이터 파일을 내려받기 전에 폴더 이름과 위치를 먼저 맞추면, 각자 다른 컴퓨터에서도 같은 코드를 그대로 실행하기 쉽습니다. 프로젝트 루트는 `README.md`와 `00_OT`, `01주차` 폴더가 함께 보이는 `PSPY-DataAnalysis` 폴더입니다.
 
 ```text
-Dacon-dataset/                         # 프로젝트 루트
+PSPY-DataAnalysis/                         # 프로젝트 루트
 ├─ 00_OT/
 │  ├─ notion.md
 │  ├─ setup_folders.py                 # 공통 폴더 생성 도구
@@ -113,14 +113,19 @@ Dacon-dataset/                         # 프로젝트 루트
 │  ├─ assignment_baseline.ipynb
 │  └─ assets/
 ├─ dataset/
-│  ├─ raw/                             # 내려받은 파일과 API 원본
-│  │  └─ KRX/
-│  ├─ extracted/                       # 노트북이 읽는 압축 해제 자료
-│  │  ├─ 따릉이 공공데이터/
-│  │  ├─ KRX/
-│  │  ├─ 서울시 CCTV 공공데이터/
-│  │  └─ 주차별 과제 데이터 폴더/
-│  └─ processed/                       # 정제·병합해 새로 만든 산출물
+│  ├─ open/                            # 공개·접근 가능한 데이터
+│  │  ├─ raw/                          # 내려받은 파일과 API 원본
+│  │  │  └─ KRX/
+│  │  ├─ extracted/                    # 노트북이 읽는 압축 해제 자료
+│  │  │  ├─ 따릉이 공공데이터/
+│  │  │  ├─ KRX/
+│  │  │  ├─ 서울시 CCTV 공공데이터/
+│  │  │  └─ 주차별 과제 데이터 폴더/
+│  │  └─ processed/                    # 정제·병합해 새로 만든 산출물
+│  └─ close/                           # 비공개·접근 제한 데이터
+│     ├─ raw/
+│     ├─ extracted/
+│     └─ processed/
 ├─ .env.example                        # 인증키 입력 형식 예시
 ├─ .env                                # 개인 인증키, Git 공유 제외
 ├─ .gitignore                          # 데이터·인증키 제외 규칙
@@ -174,9 +179,9 @@ py 00_OT/setup_folders.py
 
 ```text
 [완료] 학습 공통 폴더를 확인했습니다.
-프로젝트 루트: .../Dacon-dataset
-데이터 입력 폴더: .../Dacon-dataset/dataset/extracted
-분석 산출물 폴더: .../Dacon-dataset/dataset/processed
+프로젝트 루트: .../PSPY-DataAnalysis
+공개 데이터 폴더: .../PSPY-DataAnalysis/dataset/open
+비공개 데이터 폴더: .../PSPY-DataAnalysis/dataset/close
 ```
 
 개인 인증키가 들어가는 `.env`는 이 스크립트가 만들거나 수정하지 않습니다. 1주차 KRX API 실습을 시작할 때 루트의 `.env.example`을 `.env`로 복사하고, 발급받은 키는 자신의 `.env`에만 입력합니다.
@@ -187,26 +192,26 @@ py 00_OT/setup_folders.py
 
 | 주차 | 예제·과제 데이터가 들어갈 위치 |
 |---|---|
-| 1주차 | `dataset/extracted/따릉이 공공데이터/03_대여이력/`, `dataset/raw/KRX/`, `dataset/extracted/KRX/` |
-| 2주차 | `dataset/extracted/따릉이 공공데이터/02_이용정보/`, `dataset/extracted/감귤 착과량 예측 AI 경진대회/` |
-| 3주차 | `dataset/extracted/따릉이 공공데이터/02_이용정보/`, `dataset/extracted/2023 전력사용량 예측 AI 경진대회/` |
-| 4주차 | `dataset/extracted/따릉이 공공데이터/02_이용정보/`, `dataset/extracted/물류 유통량 예측 경진대회/` |
-| 5주차 | `dataset/extracted/Loan Prediction Problem Dataset/`, `dataset/extracted/월간 데이콘 항공편 지연 예측 AI 경진대회/` |
-| 6주차 | `dataset/extracted/Customer Personality Analysis/`, `dataset/extracted/이커머스 고객 세분화 분석 아이디어 경진대회/` |
-| 7주차 | `dataset/extracted/서울시 CCTV 공공데이터/` · 심야약국 자료는 출처 확정 후 추가합니다. |
-| 8주차 | `dataset/extracted/제주도 도로 교통량 예측 AI 경진대회/open/`, `dataset/extracted/신용카드 고객 세그먼트 분류 AI 경진대회/train/1.회원정보/`부터 `train/8.성과정보/`까지 |
+| 1주차 | `dataset/open/extracted/따릉이 공공데이터/03_대여이력/`, `dataset/open/raw/KRX/`, `dataset/open/extracted/KRX/` |
+| 2주차 | `dataset/open/extracted/따릉이 공공데이터/02_이용정보/`, `dataset/open/extracted/감귤 착과량 예측 AI 경진대회/` |
+| 3주차 | `dataset/open/extracted/따릉이 공공데이터/02_이용정보/`, `dataset/open/extracted/2023 전력사용량 예측 AI 경진대회/` |
+| 4주차 | `dataset/open/extracted/따릉이 공공데이터/02_이용정보/`, `dataset/open/extracted/물류 유통량 예측 경진대회/` |
+| 5주차 | `dataset/open/extracted/Loan Prediction Problem Dataset/`, `dataset/open/extracted/월간 데이콘 항공편 지연 예측 AI 경진대회/` |
+| 6주차 | `dataset/open/extracted/Customer Personality Analysis/`, `dataset/open/extracted/이커머스 고객 세분화 분석 아이디어 경진대회/` |
+| 7주차 | `dataset/open/extracted/서울시 CCTV 공공데이터/` · 심야약국 자료는 출처 확정 후 추가합니다. |
+| 8주차 | `dataset/open/extracted/제주도 도로 교통량 예측 AI 경진대회/open/`, `dataset/open/extracted/신용카드 고객 세그먼트 분류 AI 경진대회/train/1.회원정보/`부터 `train/8.성과정보/`까지 |
 
 DACON 압축파일은 압축을 푼 뒤 같은 이름의 폴더가 한 겹 더 생기기도 합니다. 예를 들어 제주 데이터는 노트북이 `open/train.csv`를 읽으므로, 최종 파일이 `open/open/train.csv`처럼 한 단계 더 들어가지 않았는지 파일명까지 확인합니다.
 
 ### 루트 기준 경로와 노트북 기준 경로
 
-교재에서 `dataset/extracted/...`라고 안내할 때는 프로젝트 루트에서 시작하는 경로입니다. 반면 각 주차 노트북의 `../dataset/extracted/...`는 현재 주차 폴더에서 한 단계 위로 올라간 뒤 `dataset`으로 이동한다는 뜻입니다.
+교재에서 `dataset/open/extracted/...`라고 안내할 때는 프로젝트 루트에서 시작하는 경로입니다. 반면 각 주차 노트북의 `../dataset/open/extracted/...`는 현재 주차 폴더에서 한 단계 위로 올라간 뒤 `dataset`으로 이동한다는 뜻입니다.
 
 ```text
-Dacon-dataset/01주차/example.ipynb
-             └─ ../dataset/extracted/따릉이 공공데이터/...
+PSPY-DataAnalysis/01주차/example.ipynb
+             └─ ../dataset/open/extracted/따릉이 공공데이터/...
                 ↓
-Dacon-dataset/dataset/extracted/따릉이 공공데이터/...
+PSPY-DataAnalysis/dataset/open/extracted/따릉이 공공데이터/...
 ```
 
 주차 노트북에서 다음 셀을 먼저 실행하면 현재 작업 폴더가 올바른지 확인할 수 있습니다.
@@ -215,14 +220,14 @@ Dacon-dataset/dataset/extracted/따릉이 공공데이터/...
 from pathlib import Path
 
 week_dir = Path.cwd().resolve()
-data_dir = (week_dir / ".." / "dataset" / "extracted").resolve()
+data_dir = (week_dir / ".." / "dataset" / "open" / "extracted").resolve()
 
 print("현재 작업 폴더:", week_dir)
 print("데이터 입력 폴더:", data_dir)
 
 expected_week_names = {f"{week:02d}주차" for week in range(1, 9)}
 assert week_dir.name in expected_week_names, "현재 작업 폴더를 실행할 주차 폴더로 맞춰 주세요."
-assert data_dir.is_dir(), "dataset/extracted 폴더를 찾을 수 없습니다. OT의 폴더 생성 명령을 먼저 실행해 주세요."
+assert data_dir.is_dir(), "dataset/open/extracted 폴더를 찾을 수 없습니다. OT의 폴더 생성 명령을 먼저 실행해 주세요."
 ```
 
 첫 번째 확인에서 오류가 나오면 터미널에서 실행할 주차 폴더로 이동한 뒤 Jupyter를 시작합니다. IDE를 사용한다면 노트북의 현재 작업 폴더를 해당 `0X주차` 폴더로 지정합니다.
@@ -234,14 +239,14 @@ jupyter lab
 
 경로를 함께 사용할 때는 다음 원칙을 기억합니다.
 
-1. 압축파일이나 API 원본은 `dataset/raw/`에 보관합니다.
-2. 압축을 풀어 노트북에서 읽을 파일은 표에 적힌 `dataset/extracted/` 하위 폴더에 둡니다.
-3. 정제·병합한 결과를 원본과 구분하려면 `dataset/processed/`에 저장합니다.
+1. 압축파일이나 API 원본은 `dataset/open/raw/`에 보관합니다.
+2. 압축을 풀어 노트북에서 읽을 파일은 표에 적힌 `dataset/open/extracted/` 하위 폴더에 둡니다.
+3. 정제·병합한 결과를 원본과 구분하려면 `dataset/open/processed/`에 저장합니다.
 4. 한글·영문·띄어쓰기가 포함된 폴더명은 표의 이름을 그대로 사용합니다. 이름을 축약하거나 번역하면 노트북이 파일을 찾지 못할 수 있습니다.
 5. `dataset/`의 원본 파일과 개인용 `.env`는 Git에 포함되지 않습니다. 저장소를 새로 내려받은 뒤에는 폴더를 만들고 데이터를 직접 준비하며, 인증키는 화면 캡처나 제출 파일에 포함하지 않습니다.
 
 > 📷 **스크린샷 플레이스홀더 — 폴더 준비를 마친 프로젝트 탐색기**
-> - 캡처 대상: IDE 탐색기에서 `00_OT`~`08주차`, 펼쳐진 `dataset/raw`, `dataset/extracted`, `dataset/processed`가 함께 보이는 화면
+> - 캡처 대상: IDE 탐색기에서 `00_OT`~`08주차`, 펼쳐진 `dataset/open/raw`, `dataset/open/extracted`, `dataset/open/processed`가 함께 보이는 화면
 > - 표시할 내용: 프로젝트 루트, 주차 폴더, 원본 보관 위치, 노트북 입력 위치, 분석 산출물 위치
 > - 독자 질문: “내 데이터 폴더가 주차 폴더 안이 아니라 프로젝트 루트의 `dataset` 아래에 있습니까?”
 > - 권장 캡션/대체 텍스트: “모든 참여자가 공통으로 사용하는 주차별 교재와 데이터 폴더 구조”
@@ -333,8 +338,8 @@ import sys
 
 print("파이썬:", sys.executable)
 print("현재 작업 폴더:", Path.cwd().resolve())
-print("데이터 입력 폴더:", (Path.cwd() / ".." / "dataset" / "extracted").resolve())
-print("데이터 폴더 존재:", (Path.cwd() / ".." / "dataset" / "extracted").resolve().is_dir())
+print("데이터 입력 폴더:", (Path.cwd() / ".." / "dataset" / "open" / "extracted").resolve())
+print("데이터 폴더 존재:", (Path.cwd() / ".." / "dataset" / "open" / "extracted").resolve().is_dir())
 ```
 
 ### 시행착오 기록 템플릿
@@ -530,7 +535,7 @@ scikit-learn: 1.4 이상
 
 ## OT 체크리스트
 
-- [ ] `setup_folders.py`를 실행하고 `dataset/raw`, `dataset/extracted`, `dataset/processed`가 만들어졌는지 확인했습니다.
+- [ ] `setup_folders.py`를 실행하고 `dataset/open/raw`, `dataset/open/extracted`, `dataset/open/processed`가 만들어졌는지 확인했습니다.
 - [ ] `check_environment.py`를 실행하고 `[설치 필요]` 또는 `[확인 필요]` 항목이 있는지 확인했습니다.
 - [ ] 주차 노트북에서 `Path.cwd()` 확인 셀을 실행해 현재 작업 폴더와 데이터 입력 폴더를 확인했습니다.
 - [ ] 이번 주 데이터가 표에 적힌 정확한 폴더명 아래에 있는지 확인했습니다.

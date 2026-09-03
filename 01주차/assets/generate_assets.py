@@ -34,10 +34,10 @@ RENTAL_PATH = (
     / "서울특별시 공공자전거 대여이력 정보_2602.csv"
 )
 KRX_INDEX_PATH = (
-    PROJECT_ROOT / "dataset" / "extracted" / "KRX" / "krx_index_20240823.csv"
+    PROJECT_ROOT / "dataset" / "open" / "extracted" / "KRX" / "krx_index_20240823.csv"
 )
 KOSDAQ_PATH = (
-    PROJECT_ROOT / "dataset" / "extracted" / "KRX" / "kosdaq_stocks_20240823.csv"
+    PROJECT_ROOT / "dataset" / "open" / "extracted" / "KRX" / "kosdaq_stocks_20240823.csv"
 )
 
 COLORS = {

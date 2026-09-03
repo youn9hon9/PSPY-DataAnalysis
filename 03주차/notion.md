@@ -54,9 +54,9 @@ print('현재 작업 폴더:', start)
 print('프로젝트 루트:', root)
 
 if root is not None:
-    bike_dir = root / 'dataset/extracted/따릉이 공공데이터/02_이용정보'
+    bike_dir = root / 'dataset/open/extracted/따릉이 공공데이터/02_이용정보'
     bike_files = sorted(bike_dir.glob('서울특별시 공공자전거 일별 대여건수_*.csv'))
-    power_dir = root / 'dataset/extracted/2023 전력사용량 예측 AI 경진대회'
+    power_dir = root / 'dataset/open/extracted/2023 전력사용량 예측 AI 경진대회'
     print('따릉이 파일 수:', len(bike_files))
     for name in ['train.csv', 'building_info.csv']:
         path = power_dir / name
@@ -80,8 +80,8 @@ if root is not None:
 
 ## 사용할 데이터와 다운로드 위치
 
-- 본문 실습은 2주차와 같은 [서울시 따릉이 일별 대여건수](https://data.seoul.go.kr/dataList/OA-14994/A/1/datasetView.do)를 이어서 사용합니다. 필요한 기간의 `서울특별시 공공자전거 일별 대여건수_*.csv`를 내려받아 `dataset/extracted/따릉이 공공데이터/02_이용정보/`에 두면 됩니다. 준비한 파일의 출처·다운로드 날짜·파일 버전도 함께 기록합니다.
-- 과제 데이터는 README의 [전력사용량 (건물정보 join + 결측치 처리)](https://dacon.io/competitions/official/236125) 링크에서 직접 확인하고 내려받을 수 있습니다. 내려받은 `train.csv`와 `building_info.csv`를 `dataset/extracted/2023 전력사용량 예측 AI 경진대회/`에 두면 `assignment_baseline.ipynb`의 경로와 연결됩니다.
+- 본문 실습은 2주차와 같은 [서울시 따릉이 일별 대여건수](https://data.seoul.go.kr/dataList/OA-14994/A/1/datasetView.do)를 이어서 사용합니다. 필요한 기간의 `서울특별시 공공자전거 일별 대여건수_*.csv`를 내려받아 `dataset/open/extracted/따릉이 공공데이터/02_이용정보/`에 두면 됩니다. 준비한 파일의 출처·다운로드 날짜·파일 버전도 함께 기록합니다.
+- 과제 데이터는 README의 [전력사용량 (건물정보 join + 결측치 처리)](https://dacon.io/competitions/official/236125) 링크에서 직접 확인하고 내려받을 수 있습니다. 내려받은 `train.csv`와 `building_info.csv`를 `dataset/open/extracted/2023 전력사용량 예측 AI 경진대회/`에 두면 `assignment_baseline.ipynb`의 경로와 연결됩니다.
 
 > **학습 단계:** ✅ 기본 학습은 여기서 시작합니다. train, validation, test의 역할을 구분한 뒤 Part 1, Part 2, Part 4에서 작은 트리와 제한 없는 트리를 한 번씩 실행합니다. Part 3의 선형회귀는 본문의 저장값만 읽고, 오차 감소량 수식은 `🧩 도전 학습`에서 다시 확인해도 됩니다.
 

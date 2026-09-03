@@ -25,7 +25,7 @@ ASSET_DIR = Path(__file__).resolve().parent
 WEEK_DIR = ASSET_DIR.parent
 PROJECT_ROOT = WEEK_DIR.parent
 DATA_DIR = (
-    PROJECT_ROOT / "dataset" / "extracted" / "따릉이 공공데이터" / "02_이용정보"
+    PROJECT_ROOT / "dataset" / "open" / "extracted" / "따릉이 공공데이터" / "02_이용정보"
 )
 
 COLORS = {
