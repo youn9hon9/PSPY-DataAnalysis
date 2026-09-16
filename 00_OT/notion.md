@@ -133,18 +133,54 @@ PSPY-DataAnalysis/                         # 프로젝트 루트
 └─ README.md
 ```
 
+### 로컬 가상환경 만들기
+
+로컬 PC에서는 Python 3.10 이상을 준비하고 **노트북 코드 셀이 아닌 터미널**에서 시작합니다. 터미널의 현재 폴더를 `requirements.txt`가 있는 프로젝트 루트(`PSPY-DataAnalysis`)로 이동한 뒤, 운영체제에 맞는 명령을 실행합니다. `.venv`는 이 프로젝트의 파이썬과 패키지를 담는 폴더입니다. `requirements.txt`는 이미 제공된 설치 목록이므로 새로 만들거나 `.venv` 안으로 옮기지 않습니다.
+
+**Windows PowerShell**
+
+```powershell
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+`py`가 없고 `python` 명령을 사용할 수 있다면 생성 명령만 `python -m venv .venv`로 바꿉니다.
+
+**macOS / Linux**
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
 ### 패키지를 설치하고 현재 환경을 확인합니다
 
-프로젝트 루트에서 다음 명령을 차례로 실행합니다. 첫 번째 명령은 공통 필수 패키지를 설치하고, 두 번째 명령은 현재 파이썬·패키지·공통 폴더를 읽기 전용으로 점검합니다.
+가상환경을 활성화한 **같은 터미널**에서 다음 명령을 차례로 실행합니다. 첫 명령의 출력 경로가 프로젝트의 `.venv` 아래인지 확인한 뒤 패키지를 설치합니다.
 
 ```text
+python -c "import sys; print(sys.executable)"
 python -m pip install -r requirements.txt
+python 00_OT/setup_folders.py
 python 00_OT/check_environment.py
-
-# Windows에서 python 명령을 찾지 못할 때
-py -m pip install -r requirements.txt
-py 00_OT/check_environment.py
+python -m ipykernel install --sys-prefix --name pspy-dataanalysis --display-name "Python (PSPY .venv)"
+python -m jupyterlab
 ```
+
+PowerShell에서 `Activate.ps1`이 실행 정책으로 차단되면 활성화 대신 가상환경의 파이썬 경로를 직접 사용합니다. 프로젝트 루트에서 아래 명령을 실행하면 됩니다.
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe 00_OT/setup_folders.py
+.\.venv\Scripts\python.exe 00_OT/check_environment.py
+.\.venv\Scripts\python.exe -m ipykernel install --sys-prefix --name pspy-dataanalysis --display-name "Python (PSPY .venv)"
+.\.venv\Scripts\python.exe -m jupyterlab
+```
+
+JupyterLab에서 `01주차/example.ipynb` 또는 `01주차/assignment_baseline.ipynb`를 열고 **Python (PSPY .venv)** 커널을 선택합니다. VS Code에서는 노트북 오른쪽 위의 커널 선택에서 프로젝트의 `.venv` 파이썬을 선택합니다. 터미널에서 가상환경을 활성화해도 이미 열린 노트북의 커널은 자동으로 바뀌지 않습니다.
+
+다음에 새 터미널을 열면 프로젝트 루트에서 활성화 명령부터 다시 실행하고 `python -m jupyterlab`으로 시작합니다. `.venv` 생성과 패키지 설치는 최초 준비 시 진행하며, 패키지 목록이 바뀌었을 때 설치 명령을 다시 실행합니다. 활성화한 환경에서 작업을 마치면 `deactivate`로 빠져나옵니다.
+
+Colab은 별도 런타임을 사용하므로 로컬 `.venv` 생성·활성화가 필요하지 않습니다. 1주차 예제의 Colab 준비 셀은 Colab에서만 실행되고 로컬에서는 자동으로 건너뜁니다.
 
 `[정상]`은 다음 단계로 이동해도 된다는 뜻이고, `[설치 필요]`와 `[확인 필요]`는 바로 아래의 다음 행동을 확인하라는 뜻입니다. 환경 점검 도구는 데이터 파일의 내용이나 `.env`의 인증키를 읽지 않으며, 파일을 만들거나 이동하지도 않습니다.
 
@@ -156,7 +192,7 @@ import sys
 print(sys.executable)
 ```
 
-노트북의 현재 작업 폴더가 `0X주차`라면 아래 명령으로 같은 노트북 커널에 필수 패키지를 설치할 수 있습니다. 설치가 끝나면 커널을 다시 시작하고 기본 학습의 첫 코드 셀부터 실행합니다.
+로컬에서는 먼저 출력 경로가 프로젝트의 `.venv` 아래인지 확인하고, 다르면 커널을 다시 선택합니다. 올바른 커널인데 패키지가 없다면 노트북의 현재 작업 폴더가 `0X주차`일 때 아래 명령으로 설치합니다. 프로젝트 루트에서 실행 중이면 `../requirements.txt` 대신 `requirements.txt`를 사용합니다. 설치가 끝나면 커널을 다시 시작하고 기본 학습의 첫 코드 셀부터 실행합니다.
 
 ```python
 %pip install -r ../requirements.txt
@@ -321,7 +357,7 @@ jupyter lab
 
 | 보이는 현상 | 먼저 확인할 것 | 확인 뒤의 행동 |
 |---|---|---|
-| `ModuleNotFoundError` | `sys.executable`로 노트북이 사용하는 파이썬을 확인합니다. | 같은 노트북에서 `%pip install -r ../requirements.txt`를 실행하고 커널을 다시 시작합니다. |
+| `ModuleNotFoundError` | `sys.executable`로 노트북이 사용하는 파이썬을 확인합니다. | 로컬에서는 `.venv` 커널을 먼저 선택합니다. 주차 폴더에서 `%pip install -r ../requirements.txt`를 실행하고 커널을 다시 시작합니다. 루트에서 실행 중이면 `-r requirements.txt`를 사용합니다. |
 | `FileNotFoundError` | `Path.cwd()`와 오류에 표시된 전체 경로를 비교합니다. | 주차 폴더에서 실행했는지, 압축이 한 겹 더 풀렸는지, 파일명이 같은지 하나씩 확인합니다. |
 | `NameError` | 오류에 나온 변수명을 만드는 앞선 셀을 찾습니다. | 기본 학습의 첫 코드 셀부터 순서대로 다시 실행합니다. |
 | `KeyError` 또는 `usecols` 오류 | `df.columns.tolist()`로 실제 열 이름과 띄어쓰기를 확인합니다. | 문서와 다른 열 이름을 기록하고, 임의로 이름을 바꾸기 전에 데이터 출처·버전을 확인합니다. |
@@ -394,7 +430,7 @@ DM은 정답 코드를 요청하기보다, 현재 세운 원인 가설과 다음
 - 8주차 신용카드 트랙의 Parquet 파일: `pyarrow`
 - 7주차 공간분석: `folium` 등 추가 라이브러리가 필요할 수 있음
 
-공통 필수 패키지는 프로젝트 루트의 `requirements.txt`에 정리되어 있습니다. 처음 설치하거나 빠진 패키지를 다시 설치할 때 다음 명령을 사용합니다.
+공통 필수 패키지는 프로젝트 루트의 `requirements.txt`에 정리되어 있습니다. 처음이라면 [로컬 가상환경 만들기](#로컬-가상환경-만들기)부터 진행합니다. 빠진 패키지를 다시 설치할 때도 `.venv`를 활성화한 터미널의 프로젝트 루트에서 다음 명령을 사용합니다.
 
 ```bash
 python -m pip install -r requirements.txt
@@ -535,6 +571,7 @@ scikit-learn: 1.4 이상
 
 ## OT 체크리스트
 
+- [ ] 로컬에서는 `.venv`를 만들고 `requirements.txt`의 패키지를 설치한 뒤, 노트북의 `sys.executable`이 `.venv` 아래인지 확인했습니다.
 - [ ] `setup_folders.py`를 실행하고 `dataset/open/raw`, `dataset/open/extracted`, `dataset/open/processed`가 만들어졌는지 확인했습니다.
 - [ ] `check_environment.py`를 실행하고 `[설치 필요]` 또는 `[확인 필요]` 항목이 있는지 확인했습니다.
 - [ ] 주차 노트북에서 `Path.cwd()` 확인 셀을 실행해 현재 작업 폴더와 데이터 입력 폴더를 확인했습니다.

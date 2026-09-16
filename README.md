@@ -42,12 +42,13 @@
 
 ## 폴더 구조
 
-처음 참여할 때는 [OT의 학습 폴더 안내](00_OT/notion.md)를 먼저 읽습니다. 프로젝트 루트에서 아래 세 명령을 차례로 실행하면 공통 패키지 설치, 폴더 준비, 환경 확인을 진행할 수 있습니다. `python` 명령을 찾지 못하는 Windows 환경에서는 `python` 대신 `py`를 사용합니다.
+처음 참여할 때는 [OT의 로컬 가상환경 설정](00_OT/notion.md#로컬-가상환경-만들기)을 먼저 따라 `.venv`를 만들고 활성화합니다. `requirements.txt`는 프로젝트 루트에 있는 패키지 목록이며, 여기에 적힌 패키지를 `.venv`에 설치합니다. 활성화한 터미널의 프로젝트 루트에서 아래 명령을 차례로 실행하면 공통 패키지 설치, 폴더 준비, 환경 확인과 JupyterLab 실행을 진행할 수 있습니다.
 
 ```text
 python -m pip install -r requirements.txt
 python 00_OT/setup_folders.py
 python 00_OT/check_environment.py
+python -m jupyterlab
 ```
 
 환경 확인 도구는 파일이나 인증키를 변경하지 않습니다. 설치되지 않은 패키지와 없는 공통 폴더만 알려 주며, 실제 데이터 파일은 각 주차의 준비 안내에서 따로 확인합니다. 오류가 발생했을 때의 공통 확인 순서는 [OT의 복구 사다리](00_OT/notion.md#복구-사다리)에서 찾을 수 있습니다.
