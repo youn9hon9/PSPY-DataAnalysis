@@ -26,7 +26,7 @@ OT의 모든 내용을 첫날에 읽을 필요는 없습니다. 아래 네 단�
 |---:|---|---|
 | 1 | [`학습 폴더를 먼저 맞춥니다`](#학습-폴더를-먼저-맞춥니다)에서 설치·폴더 생성·환경 점검 명령을 실행합니다. | `check_environment.py`의 `[정상]`, `[설치 필요]`, `[확인 필요]` 중 현재 상태가 보입니다. |
 | 2 | [`한 주의 기본 완료 기준`](#한-주의-기본-완료-기준)에서 질문·시도·관찰 또는 오류·다음 행동의 네 항목을 읽습니다. | 네 줄 기록을 어디에 남길지 정합니다. |
-| 3 | [`세 파일을 오가며 공부하는 기본 리듬`](#세-파일을-오가며-공부하는-기본-리듬)에서 `notion.md`·`example.ipynb`·`assignment_baseline.ipynb`의 역할을 확인합니다. | 각 파일을 언제 열어야 하는지 한 문장으로 말할 수 있습니다. |
+| 3 | [`세 파일을 오가며 공부하는 기본 리듬`](#세-파일을-오가며-공부하는-기본-리듬)에서 `notion.md`·`practice.ipynb`·`assignment_baseline.ipynb`의 역할을 확인합니다. | 각 파일을 언제 열어야 하는지 한 문장으로 말할 수 있습니다. |
 | 4 | [1주차 학습 자료](../01주차/notion.md)를 열고 이번 주 목표를 확인합니다. | 시작할 본문 절과 노트북 셀을 찾았다면 멈춰도 됩니다. |
 
 환경 점검에서 문제가 발견되었다면 같은 날 모두 해결하지 않아도 됩니다. 오류 이름과 현재 경로, 확인한 행동, 다음 행동을 적고 [`복구 사다리`](#복구-사다리) 또는 DM 문의로 이어가면 OT 기본 준비를 마친 것입니다. `8주 학습 지도`, 분석 원칙, 발표 예시는 1주차를 진행하면서 필요한 때 다시 읽습니다.
@@ -35,7 +35,7 @@ OT의 모든 내용을 첫날에 읽을 필요는 없습니다. 아래 네 단�
 
 이 과정에는 매주 진행되는 강의가 없습니다. 참여자는 자료를 받은 뒤 자신의 속도로 읽고 실행하며, 교사와의 소통은 필요한 경우의 DM 문의로 이루어집니다. 따라서 문서와 노트북만으로 첫 시도를 시작할 수 있어야 하고, 참여자는 막힌 문제를 가능한 만큼 작게 나누어 보는 연습을 합니다.
 
-- 매주 `notion.md`에서 질문과 개념을 읽고 `example.ipynb`를 직접 실행합니다.
+- 매주 `notion.md`에서 질문과 개념을 읽고 `practice.ipynb`를 직접 실행합니다.
 - 예제의 숫자와 그림을 확인한 뒤 `assignment_baseline.ipynb`에서 질문 하나를 골라 작은 시도를 합니다.
 - 과제의 모든 TODO를 채우거나 코드를 끝까지 성공시키는 것은 필수 조건이 아닙니다.
 - 성공한 출력뿐 아니라 오류, 예상과 다른 결과, 해결하지 못한 판단도 이유와 시도를 남기면 학습 결과가 됩니다.
@@ -47,7 +47,7 @@ OT의 모든 내용을 첫날에 읽을 필요는 없습니다. 아래 네 단�
 | 파일 | 역할 | 권장 사용법 |
 |---|---|---|
 | `notion.md` | 개념, 판단 기준, 결과 해석 | 노트북 실행 전후로 두 번 읽기 |
-| `example.ipynb` | 작은 예제와 실제 데이터 워크스루 | 셀을 순서대로 실행하고 결과를 말로 설명하기 |
+| `practice.ipynb` | 작은 예제와 실제 데이터 워크스루 | 셀을 순서대로 실행하고 결과를 말로 설명하기 |
 | `assignment_baseline.ipynb` | 첫 시도와 시행착오를 남기는 과제 시작점 | 질문 하나를 골라 시도하고 결과·오류·다음 행동 기록하기 |
 
 ### 한 주의 기본 완료 기준
@@ -103,21 +103,25 @@ PSPY-DataAnalysis/                         # 프로젝트 루트
 │  └─ assets/
 ├─ 01주차/
 │  ├─ notion.md
-│  ├─ example.ipynb
+│  ├─ practice.ipynb
 │  ├─ assignment_baseline.ipynb
 │  ├─ krx_api.py
 │  └─ assets/
 ├─ 02주차/ ... 08주차/
 │  ├─ notion.md
-│  ├─ example.ipynb
+│  ├─ practice.ipynb
 │  ├─ assignment_baseline.ipynb
 │  └─ assets/
 ├─ dataset/
 │  ├─ open/                            # 공개·접근 가능한 데이터
 │  │  ├─ raw/                          # 내려받은 파일과 API 원본
+│  │  │  ├─ 따릉이 공공데이터.zip
 │  │  │  └─ KRX/
 │  │  ├─ extracted/                    # 노트북이 읽는 압축 해제 자료
 │  │  │  ├─ 따릉이 공공데이터/
+│  │  │  │  ├─ 01_대여소정보/           # 대여소 번호·위치·거치대 정보
+│  │  │  │  ├─ 02_이용정보/             # 일별 대여건수
+│  │  │  │  └─ 03_대여이력/             # 개별 대여·반납 기록
 │  │  │  ├─ KRX/
 │  │  │  ├─ 서울시 CCTV 공공데이터/
 │  │  │  └─ 주차별 과제 데이터 폴더/
@@ -133,94 +137,68 @@ PSPY-DataAnalysis/                         # 프로젝트 루트
 └─ README.md
 ```
 
+따릉이 `01_대여소정보/`에는 [서울 열린데이터광장의 대여소 정보](https://data.seoul.go.kr/dataList/OA-13252/F/1/datasetView.do)에서 받은 `공공자전거 대여소 정보(25.12월 기준).xlsx`를 둡니다. 원본은 `dataset/open/raw/따릉이 공공데이터.zip`에 압축 보관하고, 읽기용 사본은 `dataset/open/extracted/따릉이 공공데이터/01_대여소정보/`에 둡니다. `대여소현황` 시트는 첫 5행이 다단 헤더·빈 행이므로 데이터는 6행부터 읽습니다. 대여소 번호로 대여이력의 `대여 대여소번호`·`반납대여소번호`와 연결할 수 있으며, 자료 기준일 이후 신설·변경된 대여소는 매칭되지 않을 수 있습니다.
+
 ### 로컬 가상환경 만들기
 
-로컬 PC에서는 Python 3.10 이상을 준비하고 **노트북 코드 셀이 아닌 터미널**에서 시작합니다. 터미널의 현재 폴더를 `requirements.txt`가 있는 프로젝트 루트(`PSPY-DataAnalysis`)로 이동한 뒤, 운영체제에 맞는 명령을 실행합니다. `.venv`는 이 프로젝트의 파이썬과 패키지를 담는 폴더입니다. `requirements.txt`는 이미 제공된 설치 목록이므로 새로 만들거나 `.venv` 안으로 옮기지 않습니다.
-
-**Windows PowerShell**
-
-```powershell
-py -m venv .venv
-.\.venv\Scripts\Activate.ps1
-```
-
-`py`가 없고 `python` 명령을 사용할 수 있다면 생성 명령만 `python -m venv .venv`로 바꿉니다.
-
-**macOS / Linux**
+Python 3.10 이상을 준비한 뒤, 프로젝트 루트의 터미널에서 아래 한 줄을 실행합니다. Windows에서 `python`이 없으면 `py`, macOS/Linux에서는 `python3`를 사용합니다.
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
+python scripts/setup_local.py
 ```
 
-### 패키지를 설치하고 현재 환경을 확인합니다
+스크립트가 `.venv` 생성, 공통 패키지 설치, 폴더 생성, 커널 등록과 JupyterLab 실행을 처리합니다. 노트북에서는 **Python (PSPY .venv)** 커널을 선택하세요. VS Code에서는 프로젝트의 `.venv`를 선택합니다.
 
-가상환경을 활성화한 **같은 터미널**에서 다음 명령을 차례로 실행합니다. 첫 명령의 출력 경로가 프로젝트의 `.venv` 아래인지 확인한 뒤 패키지를 설치합니다.
+다음에도 같은 명령으로 시작합니다. 패키지 목록이 같으면 설치를 건너뜁니다. 설치만 하려면 `--no-launch`, 패키지 설치와 커널 등록을 다시 하려면 `--reinstall`을 붙입니다. 이미 열린 노트북의 커널은 자동으로 바뀌지 않으므로 커널 선택은 한 번 확인합니다.
 
-```text
-python -c "import sys; print(sys.executable)"
-python -m pip install -r requirements.txt
-python 00_OT/setup_folders.py
-python 00_OT/check_environment.py
-python -m ipykernel install --sys-prefix --name pspy-dataanalysis --display-name "Python (PSPY .venv)"
-python -m jupyterlab
-```
+### 노트북의 한 줄 준비 셀
 
-PowerShell에서 `Activate.ps1`이 실행 정책으로 차단되면 활성화 대신 가상환경의 파이썬 경로를 직접 사용합니다. 프로젝트 루트에서 아래 명령을 실행하면 됩니다.
-
-```powershell
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe 00_OT/setup_folders.py
-.\.venv\Scripts\python.exe 00_OT/check_environment.py
-.\.venv\Scripts\python.exe -m ipykernel install --sys-prefix --name pspy-dataanalysis --display-name "Python (PSPY .venv)"
-.\.venv\Scripts\python.exe -m jupyterlab
-```
-
-JupyterLab에서 `01주차/example.ipynb` 또는 `01주차/assignment_baseline.ipynb`를 열고 **Python (PSPY .venv)** 커널을 선택합니다. VS Code에서는 노트북 오른쪽 위의 커널 선택에서 프로젝트의 `.venv` 파이썬을 선택합니다. 터미널에서 가상환경을 활성화해도 이미 열린 노트북의 커널은 자동으로 바뀌지 않습니다.
-
-다음에 새 터미널을 열면 프로젝트 루트에서 활성화 명령부터 다시 실행하고 `python -m jupyterlab`으로 시작합니다. `.venv` 생성과 패키지 설치는 최초 준비 시 진행하며, 패키지 목록이 바뀌었을 때 설치 명령을 다시 실행합니다. 활성화한 환경에서 작업을 마치면 `deactivate`로 빠져나옵니다.
-
-Colab은 별도 런타임을 사용하므로 로컬 `.venv` 생성·활성화가 필요하지 않습니다. 1주차 예제의 Colab 준비 셀은 Colab에서만 실행되고 로컬에서는 자동으로 건너뜁니다.
-
-`[정상]`은 다음 단계로 이동해도 된다는 뜻이고, `[설치 필요]`와 `[확인 필요]`는 바로 아래의 다음 행동을 확인하라는 뜻입니다. 환경 점검 도구는 데이터 파일의 내용이나 `.env`의 인증키를 읽지 않으며, 파일을 만들거나 이동하지도 않습니다.
-
-터미널에서는 설치되었다고 나오는데 노트북에서 `ModuleNotFoundError`가 발생한다면, 터미널과 노트북이 서로 다른 파이썬을 사용하고 있을 수 있습니다. 노트북에서 다음 셀로 실행 파일을 확인합니다.
+예제와 과제 노트북 모두 첫 코드 셀에서 공통 스크립트를 실행합니다. `--week` 값은 각 노트북에 맞게 들어 있습니다.
 
 ```python
-import sys
-
-print(sys.executable)
+%run "../scripts/notebook_setup.py" --week 1
 ```
 
-로컬에서는 먼저 출력 경로가 프로젝트의 `.venv` 아래인지 확인하고, 다르면 커널을 다시 선택합니다. 올바른 커널인데 패키지가 없다면 노트북의 현재 작업 폴더가 `0X주차`일 때 아래 명령으로 설치합니다. 프로젝트 루트에서 실행 중이면 `../requirements.txt` 대신 `requirements.txt`를 사용합니다. 설치가 끝나면 커널을 다시 시작하고 기본 학습의 첫 코드 셀부터 실행합니다.
+이 한 줄이 주차 폴더로 작업 경로를 맞추고 한글 폰트를 설정합니다. 완료 메시지에는 현재 파이썬과 패키지 버전이 표시됩니다. 원본 ZIP은 `dataset/open/raw/`에 둡니다. 준비 셀이 해당 주차의 필요한 파일만 `dataset/open/extracted/`에 압축 해제합니다. 기존 파일은 덮어쓰지 않고 재사용합니다.
+
+### 필요한 데이터만 압축 해제하기
+
+예제는 `--week`로 데이터가 자동 선택됩니다. 과제의 준비 셀에는 `--kind assignment`가 이미 들어 있습니다. ZIP 전체를 풀지 않고 아래 파일만 준비합니다. 로컬과 Colab에서 동일하게 동작합니다.
+
+| 주차 | 예제 | 과제 |
+|---|---|---|
+| 1 | 따릉이 2026년 2월 대여이력 1개 | KRX API·캐시 사용 |
+| 2 | 따릉이 2024.01~2026.06 일별 자료 5개 | 감귤 train·test |
+| 3 | 같은 일별 자료 재사용 | 전력 train·building_info |
+| 4 | 같은 일별 자료 재사용 | 물류 train·test |
+| 5 | 대출 train 1개 | 항공편 train 1개 |
+| 6 | 고객 성향 CSV 1개 | 이커머스 CSV 5개 |
+| 7 | CCTV·S-DoT 별도 준비 | 예제의 분석 산출물 사용 |
+| 8 | 외부 데이터 불필요 | 아래 인자로 트랙 선택 |
+
+8주차 과제는 대용량 파일을 불필요하게 풀지 않도록 기본값에서 압축 해제를 생략합니다. 준비 셀 끝에 `--data jeju`를 붙이면 제주 `open/train.csv`만, `--data credit`을 붙이면 2018년 7월 회원·신용정보 Parquet 두 개만 준비합니다. 선택은 과제의 `TRACK`에도 반영되며, 실제 표를 읽을 때 `LOAD_DATA = True`로 바꿉니다.
 
 ```python
-%pip install -r ../requirements.txt
+%run "../scripts/notebook_setup.py" --week 8 --kind assignment --data credit
 ```
 
-7주차의 선택형 지도에는 `folium`, 8주차 신용카드 Parquet 트랙에는 `pyarrow`가 추가로 필요합니다. 해당 선택 활동을 진행할 때만 노트북에서 `%pip install folium` 또는 `%pip install pyarrow`를 실행합니다.
+`--data none`은 압축 해제를 생략합니다. ZIP이 없으면 필요한 ZIP 경로를 알려 주며, 기존 extracted 파일이나 과제의 예시 데이터 흐름은 유지합니다. CCTV·S-DoT 자료는 7주차 데이터 준비 안내에 따라 별도로 준비합니다. ZIP을 새 버전으로 바꿨다면 갱신할 extracted 파일을 별도로 옮기거나 삭제한 뒤 다시 실행하세요.
+
+### Colab에서 실행하기
+
+프로젝트 폴더 전체를 Google Drive에 둔 뒤, Colab 파일 패널에서 Drive를 연결합니다. 노트북의 첫 코드 셀을 아래처럼 바꿉니다. 폴더를 다른 곳에 두었다면 경로를 수정하고, `--week`는 해당 주차 번호를 유지합니다.
+
+```python
+%run "/content/drive/MyDrive/Colab Notebooks/PSPY-DataAnalysis/scripts/notebook_setup.py" --week 1
+```
+
+Colab에서는 이 스크립트가 공통 패키지와 나눔고딕도 설치합니다. 로컬 `.venv`는 사용하지 않습니다. 패키지 설치 후 런타임 재시작을 요청받으면 재시작하고 첫 셀부터 실행합니다.
+
+7주차 선택형 지도에만 `%pip install folium`, 8주차 Parquet 트랙에만 `%pip install pyarrow`를 추가로 실행합니다.
 
 ### 공통 폴더 한 번에 만들기
 
-저장소를 내려받은 뒤 프로젝트 루트에서 다음 명령 중 자신의 환경에서 실행되는 하나를 사용합니다.
-
-```text
-python 00_OT/setup_folders.py
-
-# Windows에서 python 명령을 찾지 못할 때
-py 00_OT/setup_folders.py
-```
-
-이 스크립트는 없는 폴더만 만들며 기존 파일을 이동하거나 덮어쓰지 않습니다. 다음과 같은 메시지가 보이면 기본 구조가 준비된 것입니다.
-
-```text
-[완료] 학습 공통 폴더를 확인했습니다.
-프로젝트 루트: .../PSPY-DataAnalysis
-공개 데이터 폴더: .../PSPY-DataAnalysis/dataset/open
-비공개 데이터 폴더: .../PSPY-DataAnalysis/dataset/close
-```
-
-개인 인증키가 들어가는 `.env`는 이 스크립트가 만들거나 수정하지 않습니다. 1주차 KRX API 실습을 시작할 때 루트의 `.env.example`을 `.env`로 복사하고, 발급받은 키는 자신의 `.env`에만 입력합니다.
+로컬 설치 스크립트가 공통 폴더를 함께 만듭니다. 폴더만 다시 준비할 때는 `python 00_OT/setup_folders.py`를 실행합니다. 없는 폴더만 생성하며 기존 데이터와 `.env`는 변경하지 않습니다. KRX 실습의 인증키는 루트 `.env.example`을 복사한 개인 `.env`에 입력합니다.
 
 ### 주차별 데이터 폴더 이름
 
@@ -244,7 +222,7 @@ DACON 압축파일은 압축을 푼 뒤 같은 이름의 폴더가 한 겹 더 �
 교재에서 `dataset/open/extracted/...`라고 안내할 때는 프로젝트 루트에서 시작하는 경로입니다. 반면 각 주차 노트북의 `../dataset/open/extracted/...`는 현재 주차 폴더에서 한 단계 위로 올라간 뒤 `dataset`으로 이동한다는 뜻입니다.
 
 ```text
-PSPY-DataAnalysis/01주차/example.ipynb
+PSPY-DataAnalysis/01주차/practice.ipynb
              └─ ../dataset/open/extracted/따릉이 공공데이터/...
                 ↓
 PSPY-DataAnalysis/dataset/open/extracted/따릉이 공공데이터/...
@@ -292,7 +270,7 @@ jupyter lab
 ```text
 ① notion.md에서 질문과 원리를 읽습니다.
              ↓
-② example.ipynb의 지정 셀을 실행하기 전에 결과를 예상합니다.
+② practice.ipynb의 지정 셀을 실행하기 전에 결과를 예상합니다.
              ↓
 ③ 실제 코드·표·그래프를 실행하고 본문의 예상 출력과 비교합니다.
              ↓
@@ -426,33 +404,11 @@ DM은 정답 코드를 요청하기보다, 현재 세운 원인 가설과 다음
 - 8주차 신용카드 트랙의 Parquet 파일: `pyarrow`
 - 7주차 공간분석: `folium` 등 추가 라이브러리가 필요할 수 있음
 
-공통 필수 패키지는 프로젝트 루트의 `requirements.txt`에 정리되어 있습니다. 처음이라면 [로컬 가상환경 만들기](#로컬-가상환경-만들기)부터 진행합니다. 빠진 패키지를 다시 설치할 때도 `.venv`를 활성화한 터미널의 프로젝트 루트에서 다음 명령을 사용합니다.
-
-```bash
-python -m pip install -r requirements.txt
-```
-
-`folium`과 `pyarrow`는 각각 7주차 선택형 지도와 8주차 신용카드 트랙을 진행할 때만 추가합니다. 설치 뒤에도 노트북에서 패키지를 찾지 못한다면 앞의 `sys.executable` 확인과 노트북 `%pip` 설치 안내를 따릅니다.
+공통 필수 패키지는 `requirements.txt`에 정의되어 있으며 [로컬 설치 스크립트](#로컬-가상환경-만들기)와 노트북의 Colab 준비 스크립트가 설치합니다. `folium`과 `pyarrow`는 해당 선택 활동을 할 때만 추가합니다.
 
 환경 차이로 결과가 달라지는 것을 줄이기 위해 패키지 버전과 실행 날짜를 기록합니다. 무작위 분할이나 무작위 초기화를 쓰는 코드에는 가능한 한 `random_state`를 지정합니다.
 
-> 실습을 시작하기 전에 아래 코드를 실행해 실제 패키지 버전을 기록합니다. 오류가 생기면 이 기록을 함께 확인합니다.
-
-Jupyter가 정상적으로 실행되는지는 다음과 같은 첫 셀로 확인할 수 있습니다.
-
-```python
-import pandas as pd
-import sklearn
-
-print("pandas:", pd.__version__)
-print("scikit-learn:", sklearn.__version__)
-```
-
-```text
-# 예상 출력 형식 — 실제 버전 번호는 환경에 따라 다릅니다.
-pandas: 2.x.x
-scikit-learn: 1.4 이상
-```
+노트북의 첫 준비 셀이 출력하는 파이썬 경로와 패키지 버전을 실행 기록에 남깁니다.
 
 ![Python에서 실제로 불러온 pandas·scikit-learn·matplotlib 버전](assets/environment-versions.png)
 

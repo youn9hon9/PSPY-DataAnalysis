@@ -57,23 +57,16 @@ accuracy=0.700, precision=0.800, recall=0.667, f1=0.727
 
 각 지표는 다음 질문에 답합니다.
 
-- **accuracy** = $(TP+TN)/전체 = 0.700이며, 전체 중 맞힌 비율을 나타냅니다.
-- **precision** = $TP/(TP+FP) = 0.800이며, 양성이라고 예측한 것 중 실제 양성의 비율을 나타냅니다.
-- **recall** = $TP/(TP+FN) = 0.667이며, 실제 양성 중 모델이 찾아낸 비율을 나타냅니다.
-- **F1** = $2 \times (precision \times recall)/(precision+recall) = 0.727이며, precision과 recall의 조화평균을 나타냅니다.
+- **accuracy** = $\frac{TP+TN}{\text{전체}} = 0.700$이며, 전체 중 맞힌 비율을 나타냅니다.
+- **precision** = $\frac{TP}{TP+FP} = 0.800$이며, 양성이라고 예측한 것 중 실제 양성의 비율을 나타냅니다.
+- **recall** = $\frac{TP}{TP+FN} = 0.667$이며, 실제 양성 중 모델이 찾아낸 비율을 나타냅니다.
+- **F1** = $\frac{2 \times (precision \times recall)}{precision+recall} = 0.727$이며, precision과 recall의 조화평균을 나타냅니다.
 
 recall이 precision보다 낮은 이유는 실제 합격자 6명 중 2명을 불합격으로 놓쳤기 때문입니다. 어느 오류의 영향이 더 큰지는 문제에 따라 달라집니다. 암 진단에서는 환자를 놓치는 FN의 영향이 특히 클 수 있고, 스팸 필터에서는 정상 메일을 스팸으로 처리하는 FP도 큰 비용이 될 수 있습니다.
 
-> 🔁 **예측 → 실행 → 비교 → 해석**
->
-> 1. **예측:** 셀을 실행하기 전에 혼동행렬의 네 칸과 recall 값을 손으로 적습니다.
-> 2. **실행:** `example.ipynb` Part 1의 `toy`, `confusion_matrix`, 지표 계산 셀을 차례로 실행합니다.
-> 3. **비교:** 행이 실제, 열이 예측인지 확인한 뒤 위 출력과 비교합니다.
-> 4. **해석:** “실제 합격자를 몇 명 놓쳤습니까?”를 FN과 연결하여 한 문장으로 씁니다.
-
 ![실제값을 행, 예측값을 열로 둔 합격 예제 혼동행렬. TN 3, FP 1, FN 2, TP 4.](assets/toy_confusion_matrix.png)
 
-*그림 5-1. 실제값을 행, 예측값을 열로 둔 합격 예제 혼동행렬입니다. `example.ipynb` Part 1의 `toy = pd.DataFrame(...)`와 `cm = confusion_matrix(...)` 셀을 사용했습니다.*
+*그림 5-1. 실제값을 행, 예측값을 열로 둔 합격 예제 혼동행렬입니다. `practice.ipynb` Part 1의 `toy = pd.DataFrame(...)`와 `cm = confusion_matrix(...)` 셀을 사용했습니다.*
 
 > **그림 읽기 질문:** 합격을 양성으로 두었을 때 놓친 합격자는 어느 칸이며 몇 명입니까?
 
@@ -117,7 +110,7 @@ $$
 
 > **기본 그림 읽기 질문:** 선형 점수 `z`가 음수에서 양수로 커질 때 양성 확률은 어느 방향으로 움직입니까?
 
-`example.ipynb` Part 6에서 학습한 모델은 다음처럼 양성 확률과 최종 클래스를 만듭니다.
+`practice.ipynb` Part 6에서 학습한 모델은 다음처럼 양성 확률과 최종 클래스를 만듭니다.
 
 ```python
 model.fit(X_train, y_train)
@@ -198,16 +191,9 @@ N    0.313
 
 승인(Y) 68.7%, 거절(N) 31.3%로 쏠려 있습니다. 이 비율은 뒤에서 다수 클래스만 예측해도 얻는 accuracy의 기준이 됩니다. 전체 데이터의 분포를 탐색하는 것은 가능하지만, 테스트 라벨을 보면서 모델이나 임계값을 바꾸면 테스트 데이터가 공정한 최종 평가용으로 남지 않습니다.
 
-> 🔁 **예측 → 실행 → 비교 → 해석**
->
-> 1. **예측:** 항상 Y만 예측할 때 accuracy가 약 몇 퍼센트인지 먼저 적습니다.
-> 2. **실행:** `example.ipynb` Part 2의 데이터 로드와 `value_counts(normalize=True)` 셀을 실행합니다.
-> 3. **비교:** 614건, Y 422건, N 192건인지 확인합니다.
-> 4. **해석:** accuracy 68.7%가 모델 없이도 가능한 기준선이라는 점을 설명합니다.
-
 ![대출 승인 Y 422건 68.7퍼센트와 거절 N 192건 31.3퍼센트의 불균형 분포.](assets/loan_target_distribution.png)
 
-*그림 5-3. 승인 Y 422건(68.7%)과 거절 N 192건(31.3%)의 타깃 분포입니다. `example.ipynb` Part 2의 `df['Loan_Status'].value_counts(normalize=True)` 셀과 같은 원본 데이터를 사용했습니다.*
+*그림 5-3. 승인 Y 422건(68.7%)과 거절 N 192건(31.3%)의 타깃 분포입니다. `practice.ipynb` Part 2의 `df['Loan_Status'].value_counts(normalize=True)` 셀과 같은 원본 데이터를 사용했습니다.*
 
 > **그림 읽기 질문:** 모든 신청자를 Y로 예측하면 왜 0.687의 accuracy를 얻습니까?
 
@@ -245,7 +231,7 @@ N    0.313
 
 ### Part 6~8 — 모델과 혼동행렬을 확인합니다
 
-`example.ipynb` Part 6~8의 핵심 실행 흐름은 다음과 같습니다.
+`practice.ipynb` Part 6~8의 핵심 실행 흐름은 다음과 같습니다.
 
 ```python
 from sklearn.compose import ColumnTransformer
@@ -311,16 +297,9 @@ scikit-learn의 `confusion_matrix(y_true, y_pred)`는 기본적으로 행이 실
 
 대출 심사처럼 잘못된 승인이 큰 손실로 이어질 수 있다면 accuracy보다 N recall, Y precision 또는 승인 오류의 실제 비용이 중요할 수 있습니다. 다만 이 데이터의 `Loan_Status`는 과거 승인 결과이지 실제 상환 여부가 아닙니다. **승인 결과를 잘 예측하는 모델이 부도 위험을 잘 예측하는 모델은 아닙니다.**
 
-> 🔁 **예측 → 실행 → 비교 → 해석**
->
-> 1. **예측:** Y가 다수 클래스라는 사실만 보고 혼동행렬에서 FP와 FN 중 어느 쪽이 더 많을지 예상합니다.
-> 2. **실행:** Part 6의 학습 셀부터 Part 8의 지표 셀까지 실행합니다.
-> 3. **비교:** `[[22, 16], [1, 84]]`와 비교하고 행·열 라벨을 다시 확인합니다.
-> 4. **해석:** “실제 N 38건 중 16건을 Y로 예측했습니다”처럼 분모와 실제·예측 클래스를 함께 씁니다.
-
 ![검증 데이터에서 실제 거절 38건 중 16건을 승인으로 예측한 로지스틱 회귀 혼동행렬.](assets/model_confusion_matrix.png)
 
-*그림 5-4. 검증 데이터의 혼동행렬 `[[22, 16], [1, 84]]`입니다. `example.ipynb` Part 7의 `cm = confusion_matrix(y_val, pred)` 셀을 재현했으며, 실제 N을 Y로 예측한 FP 칸을 빨간 테두리로 강조했습니다.*
+*그림 5-4. 검증 데이터의 혼동행렬 `[[22, 16], [1, 84]]`입니다. `practice.ipynb` Part 7의 `cm = confusion_matrix(y_val, pred)` 셀을 재현했으며, 실제 N을 Y로 예측한 FP 칸을 빨간 테두리로 강조했습니다.*
 
 > **그림 읽기 질문:** accuracy 86.2%만 보았을 때 놓치기 쉬운 오류는 어느 칸입니까?
 
@@ -350,7 +329,7 @@ print("모델 accuracy :", accuracy_score(y_val, pred))
 
 ![항상 승인만 예측하는 더미 모델과 로지스틱 회귀의 accuracy, Y precision, Y recall, N recall 비교.](assets/model_metric_comparison.png)
 
-*그림 5-5. `example.ipynb` Part 9의 항상 승인하는 더미 모델과 로지스틱 회귀를 비교했습니다. 다수 클래스 지표만으로는 더미 모델의 한계를 발견하기 어려울 수 있어 N recall도 함께 표시했습니다.*
+*그림 5-5. `practice.ipynb` Part 9의 항상 승인하는 더미 모델과 로지스틱 회귀를 비교했습니다. 다수 클래스 지표만으로는 더미 모델의 한계를 발견하기 어려울 수 있어 N recall도 함께 표시했습니다.*
 
 > **그림 읽기 질문:** 더미 모델의 Y recall 1.0이 좋은 모델을 뜻하지 않는 이유는 무엇입니까?
 
@@ -358,7 +337,7 @@ print("모델 accuracy :", accuracy_score(y_val, pred))
 
 ## 6. 임계값을 직접 바꾸어 봅니다
 
-다음 코드를 `example.ipynb` Part 8 뒤에 붙여 실행하고, Part 6에서 학습한 모델의 확률을 0.3, 0.5, 0.7에서 나누어 precision, recall과 혼동행렬을 비교합니다.
+다음 코드를 `practice.ipynb` Part 8 뒤에 붙여 실행하고, Part 6에서 학습한 모델의 확률을 0.3, 0.5, 0.7에서 나누어 precision, recall과 혼동행렬을 비교합니다.
 
 ```python
 from sklearn.metrics import precision_score, recall_score, confusion_matrix
@@ -374,13 +353,6 @@ for threshold in [0.3, 0.5, 0.7]:
         "cm=", confusion_matrix(y_val, pred_t).tolist(),
     )
 ```
-
-> 🔁 **예측 → 실행 → 비교 → 해석**
->
-> 1. **예측:** 임계값별 precision과 recall의 일반적인 방향을 표로 적습니다.
-> 2. **실행:** 위 코드를 Part 8 뒤에 붙여 실행합니다.
-> 3. **비교:** 예상과 실제 수치가 다른 임계값을 표시합니다. 동점과 데이터 분포 때문에 단조롭게 변하지 않는 구간이 있을 수 있습니다.
-> 4. **해석:** 각 임계값의 혼동행렬에 승인 오류와 우량 신청자 거절 비용을 연결합니다.
 
 이 출력에서 가장 좋아 보이는 숫자가 곧바로 최종 임계값이 되는 것은 아닙니다. 같은 검증 데이터로 임계값을 선택했다면 별도의 테스트 데이터에서 최종 성능을 평가하는 것이 좋습니다. 이렇게 하면 선택 과정의 낙관적 편향을 줄일 수 있습니다. 예측확률을 실제 위험도나 비용 계산에 사용하려면 calibration도 별도로 확인하는 것이 좋습니다.
 

@@ -3,7 +3,7 @@
 Run from any directory with:
     python 02주차/assets/generate_assets.py
 
-All model inputs and feature engineering match 02주차/example.ipynb.
+All model inputs and feature engineering match 02주차/practice.ipynb.
 """
 
 from __future__ import annotations

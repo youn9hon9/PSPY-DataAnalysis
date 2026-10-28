@@ -1,8 +1,14 @@
-# 공개·비공개 여부와 관계없이 모든 로컬 데이터와 분석 산출물은 저장소에 포함하지 않습니다.
-/dataset/
+/dataset/*
+!/dataset/open/
+/dataset/open/*
+!/dataset/open/raw/
+
 .env
 .env.*
 !.env.example
+
 __pycache__/
 .ipynb_checkpoints/
 .venv/
+
+tests

@@ -40,6 +40,7 @@ DATASET_DIRECTORIES = (
     "dataset/close/processed",
     "dataset/open/raw/KRX",
     "dataset/open/extracted/KRX",
+    "dataset/open/extracted/따릉이 공공데이터/01_대여소정보",
     "dataset/open/extracted/따릉이 공공데이터/02_이용정보",
     "dataset/open/extracted/따릉이 공공데이터/03_대여이력",
     "dataset/open/extracted/감귤 착과량 예측 AI 경진대회",

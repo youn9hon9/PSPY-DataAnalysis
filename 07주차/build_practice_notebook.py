@@ -5,13 +5,14 @@ from __future__ import annotations
 import contextlib
 import io
 import json
+import runpy
 import textwrap
 import traceback
 from pathlib import Path
 
 
 WEEK_DIR = Path(__file__).resolve().parent
-NOTEBOOK_PATH = WEEK_DIR / "example.ipynb"
+NOTEBOOK_PATH = WEEK_DIR / "practice.ipynb"
 
 
 def lines(text: str) -> list[str]:
@@ -50,9 +51,22 @@ cells = [
     ),
     markdown(
         '''
+        ## 실행 준비
+
+        로컬은 [최초 설치](../00_OT/notion.md#로컬-가상환경-만들기) 후 Python (PSPY .venv) 커널에서 아래 한 줄을 실행합니다.
+        Colab은 파일 패널에서 Drive를 연결한 뒤 아래 코드 셀을 다음 한 줄로 바꿉니다. 프로젝트 위치가 다르면 경로만 수정합니다.
+
+        ```python
+        %run "/content/drive/MyDrive/Colab Notebooks/PSPY-DataAnalysis/scripts/notebook_setup.py" --week 7
+        ```
+        '''
+    ),
+    code('%run "../scripts/notebook_setup.py" --week 7'),
+    markdown(
+        '''
         ## Part 0 — 실행 경로와 입력 파일 확인
 
-        노트북을 프로젝트 루트에서 열어도, `07주차` 폴더에서 열어도 작동하도록 `README.md`가 있는 상위 폴더를 찾습니다. 입력 파일이 없을 때는 임의의 대체 데이터를 만들지 않고 어떤 파일이 필요한지 오류로 알려 줍니다.
+        첫 준비 셀에서 설정한 프로젝트 경로를 사용합니다. 입력 파일이 없을 때는 임의의 대체 데이터를 만들지 않고 어떤 파일이 필요한지 오류로 알려 줍니다.
         '''
     ),
     code(
@@ -62,21 +76,12 @@ cells = [
         import matplotlib
         matplotlib.use("Agg")
         import matplotlib.pyplot as plt
-        from matplotlib import font_manager
         from matplotlib.lines import Line2D
         from matplotlib.patches import Ellipse
         import numpy as np
         import pandas as pd
 
 
-        def find_project_root(start: Path) -> Path:
-            for candidate in (start, *start.parents):
-                if (candidate / "README.md").is_file() and (candidate / "07주차").is_dir():
-                    return candidate
-            raise FileNotFoundError("README.md가 있는 프로젝트 루트를 찾을 수 없습니다.")
-
-
-        PROJECT_ROOT = find_project_root(Path.cwd().resolve())
         DATA_ROOT = PROJECT_ROOT / "dataset" / "open" / "extracted" / "서울시 CCTV 공공데이터"
         ASSET_DIR = PROJECT_ROOT / "07주차" / "assets"
         OUTPUT_DIR = PROJECT_ROOT / "dataset" / "open" / "processed" / "서울시 CCTV 공공데이터"
@@ -100,12 +105,6 @@ cells = [
         if len(WALK_PATHS) != 3:
             raise ValueError(f"예제는 S-DoT 주간 파일 3개를 기대하지만 {len(WALK_PATHS)}개를 찾았습니다.")
 
-        available_fonts = {font.name for font in font_manager.fontManager.ttflist}
-        for font_name in ("Malgun Gothic", "AppleGothic", "NanumGothic", "DejaVu Sans"):
-            if font_name in available_fonts:
-                plt.rcParams["font.family"] = font_name
-                break
-        plt.rcParams["axes.unicode_minus"] = False
 
         print("프로젝트 루트 확인:", PROJECT_ROOT.name)
         print("입력 파일 확인:", len(required), "개")
@@ -782,7 +781,12 @@ def execute_cells(notebook_cells: list[dict]) -> None:
 
         try:
             with contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
-                exec(compile(source, f"{NOTEBOOK_PATH.name}:cell-{index}", "exec"), namespace)
+                if source.startswith('%run "../scripts/notebook_setup.py"'):
+                    helper = runpy.run_path(str(WEEK_DIR.parent / "scripts" / "notebook_setup.py"))
+                    namespace.update(helper)
+                    namespace.update(helper["setup"](7))
+                else:
+                    exec(compile(source, f"{NOTEBOOK_PATH.name}:cell-{index}", "exec"), namespace)
         except Exception:
             traceback.print_exc(file=stderr)
             failures.append(f"cell {index}")
